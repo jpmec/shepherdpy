@@ -26,11 +26,11 @@ class TestShepherd(unittest.TestCase):
 
 		expected = {'a': 2, 'on': 1, 'great': 1, 'Humpty': 3, 'again': 1, 'wall': 1, 'Dumpty': 2, 'men': 1, 'had': 1, 'all': 1, 'together': 1, "King's": 2, 'horses': 1, 'All': 1, "Couldn't": 1, 'fall': 1, 'and': 1, 'the': 2, 'put': 1, 'sat': 1}
 
-		pool = Pool(processes=1)
-		process = pool.apply_async(run_example)
-		shepherd.run_clients()
-		result = process.get()
-		print result
+#		pool = Pool(processes=1)
+#		process = pool.apply_async(run_example)
+#		shepherd.run_clients()
+#		result = process.get()
+#		print result
 
 #		self.assertEqual(expected, result)
 
