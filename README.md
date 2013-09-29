@@ -118,8 +118,8 @@ Note that for very short tasks, such as example.py, both processes may not be us
 
 Other Options
 -------------
--v flag will use INFO logging level.
--V flag will use DEBUG logging level.
+* -v flag will use INFO logging level.
+* -V flag will use DEBUG logging level.
 
 
 Notes
