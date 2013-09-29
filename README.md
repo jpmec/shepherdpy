@@ -44,6 +44,59 @@ And the server will print out:
 Notice that shepherd.py supplies reasonable default values to mincemeat,
 so it is easier to start the mincemeat clients.
 
+If you don't run
+```bash
+python example.py
+```
+before you run
+```bash
+python shepherd.py
+```
+then shepherd.py will quietly do nothing and exit.
+
+
+Example for starting clients before server
+------------------------------------------
+
+You can use the -s option to start the clients before the server.
+The -s option defines the number of seconds each client will wait between
+connection attempts.  This allows you to run
+
+```bash
+python shepherd.py -s 1
+```
+
+then to run
+
+```bash
+python example.py
+```
+
+
+Example for running clients forever
+-----------------------------------
+
+You can use the -8 flag to run the clients forever (or until ctrl+C) is pressed.
+First run
+
+```bash
+python shepherd.py -8
+```
+
+then run
+
+```bash
+python example.py
+```
+
+You can then run the following again
+
+```bash
+python example.py
+```
+
+Note the example.py server returns an result both times and shepherd.py continues running.
+
 
 Notes
 -----
