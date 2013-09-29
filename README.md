@@ -5,17 +5,19 @@ shepherdpy
 
 A companion library for mincemeatpy that will manage MapReduce clients.
 
-You can get mincemeatpy here:
-
-https://github.com/michaelfairley/mincemeatpy
+You can get mincemeatpy from [michaelfairley/mincemeatpy](https://github.com/michaelfairley/mincemeatpy)
 
 Why?
 ----
 
+shepherdpy makes it easy to manage mincemeatpy clients.
+
 mincemeatpy is a small, lightweight MapReduce library for Python.
 It doesn't provide functionality for managing processes.
 
-shepherdpy makes it easy to manage mincemeatpy clients.
+I wanted to give more flexibility to those using mincemeatpy for MapReduce by:
+* making it easy to write and debug a server on a single machine.
+* making it easy to control a pool of client processes on the same machine, or a different machine.
 
 
 First Example
@@ -122,6 +124,22 @@ Other Options
 -------------
 * -v flag will use INFO logging level.
 * -V flag will use DEBUG logging level.
+
+
+Testing
+-------
+
+You can run the unit tests for shepherd.py using the test_shepherd.py script.
+
+```bash
+python test_shepherd.py
+```
+
+In general, if you make a pull request for this repo:
+please add a unit test, and make sure it passes before submitting the pull request.
+
+shepherd.py uses [Travis CI](https://travis-ci.org/) for continuous integration,
+so you can see the latest status of the trunk by looking at the status image at the top of this README.
 
 
 Notes
