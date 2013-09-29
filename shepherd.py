@@ -2,6 +2,7 @@
 
 ################################################################################
 # Copyright (c) 2013 Joshua Petitt
+# https://github.com/jpmec/shepherdpy
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -25,11 +26,10 @@
 import logging
 import mincemeat
 import optparse
-#import signal
 import socket
 import sys
 import time
-from multiprocessing import Pool
+from multiprocessing import Pool, Process
 
 
 VERSION = "0.0.1"
@@ -110,9 +110,32 @@ def run_client(options = {}):
 				break
 
 
+def options_parser():
+	parser = optparse.OptionParser(usage='%prog [options]', version='%%prog %s'%VERSION)
+	parser.add_option('-p', '--password', dest='password', default=DEFAULT_PASSWORD, help='password')
+	parser.add_option('-H', '--hostname', dest='hostname', default=DEFAULT_HOSTNAME, help='hostname')
+	parser.add_option('-P', '--port', dest='port', type='int', default=DEFAULT_PORT, help='port')
+	parser.add_option('-v', '--verbose', dest='verbose', action='store_true')
+	parser.add_option('-V', '--loud', dest='loud', action='store_true')
+	parser.add_option('-q', '--quiet', dest='quiet', action='store_true')
+	parser.add_option('-n', '--number_of_clients', dest='number_of_clients', default='1', help='number of client processes')
+	parser.add_option('-s', '--sleep', dest='client_sleep_seconds', default=None, help='client sleep seconds')
+	parser.add_option('-t', '--client_timeout', dest='client_timeout_seconds', default=None, help='worker timeout seconds')
+	parser.add_option('-8', '--run_forever', dest='run_forever', action='store_true')
+	parser.add_option('-i', '--input_filename', dest='input_filename', default='', help='input filename')
+
+	return parser
 
 
-def run_clients(options):
+def run_clients(options=None):
+
+	parser = options_parser()
+	(default_options, args) = parser.parse_args([])
+
+	if (options is None):
+		options = default_options
+	else:
+		options = default_options.update(options)
 
 	number_of_clients = int(options.number_of_clients)
 
@@ -140,21 +163,21 @@ def run_clients(options):
 		pool.join()
 
 
+
+
+def run_server(datasource, mapfn, reducefn):
+	s = mincemeat.Server()
+	s.datasource = datasource
+	s.mapfn = mapfn
+	s.reducefn = reducefn
+	return s.run_server(password='')
+
+
+
+
 if __name__ == '__main__':
 
-	parser = optparse.OptionParser(usage='%prog [options]', version='%%prog %s'%VERSION)
-	parser.add_option('-p', '--password', dest='password', default=DEFAULT_PASSWORD, help='password')
-	parser.add_option('-H', '--hostname', dest='hostname', default=DEFAULT_HOSTNAME, help='hostname')
-	parser.add_option('-P', '--port', dest='port', type='int', default=DEFAULT_PORT, help='port')
-	parser.add_option('-v', '--verbose', dest='verbose', action='store_true')
-	parser.add_option('-V', '--loud', dest='loud', action='store_true')
-	parser.add_option('-q', '--quiet', dest='quiet', action='store_true')
-	parser.add_option('-n', '--number_of_clients', dest='number_of_clients', default='1', help='number of client processes')
-	parser.add_option('-s', '--sleep', dest='client_sleep_seconds', default=None, help='client sleep seconds')
-	parser.add_option('-t', '--client_timeout', dest='client_timeout_seconds', default=None, help='worker timeout seconds')
-	parser.add_option("-8", "--run_forever", dest="run_forever", action="store_true")
-
-
+	parser = options_parser()
 	(options, args) = parser.parse_args()
 
 	if options.verbose:
@@ -169,4 +192,7 @@ if __name__ == '__main__':
 
 	logging.debug('options: %s', options)
 
-	run_clients(options)
+
+	p = Process(target=run_clients, args=(options,))
+	p.start()
+	p.join()

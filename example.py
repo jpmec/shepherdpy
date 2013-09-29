@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import mincemeat
+import shepherd
 
 data = ["Humpty Dumpty sat on a wall",
         "Humpty Dumpty had a great fall",
@@ -17,10 +17,7 @@ def reducefn(k, vs):
     result = sum(vs)
     return result
 
-s = mincemeat.Server()
-s.datasource = datasource
-s.mapfn = mapfn
-s.reducefn = reducefn
 
-results = s.run_server(password='')
-print results
+if __name__ == '__main__':
+    results = shepherd.run_server(datasource, mapfn, reducefn)
+    print results
