@@ -59,7 +59,7 @@ Example for starting clients before server
 ------------------------------------------
 
 You can use the -s option to start the clients before the server.
-The -s option defines the number of seconds each client will wait between
+The -s option defines the number of seconds each client will sleep between
 connection attempts.  This allows you to run
 
 ```bash
@@ -96,6 +96,30 @@ python example.py
 ```
 
 Note the example.py server returns an result both times and shepherd.py continues running.
+
+
+Example for setting the number of client processes
+--------------------------------------------------
+
+The -n option controls how many client processes will be created.
+
+For example, run the server
+```bash
+python example.py
+```
+
+next start 2 clients
+```bash
+python shepherd.py -s 1 -n 2
+```
+
+Note that for very short tasks, such as example.py, both processes may not be used.
+
+
+Other Options
+-------------
+-v flag will use INFO logging level.
+-V flag will use DEBUG logging level.
 
 
 Notes
