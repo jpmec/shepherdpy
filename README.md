@@ -139,7 +139,8 @@ In general, if you make a pull request for this repo:
 please add a unit test, and make sure it passes before submitting the pull request.
 
 shepherd.py uses [Travis CI](https://travis-ci.org/) for continuous integration,
-so you can see the latest status of the trunk by looking at the status image at the top of this README.
+so you can see the latest status of the trunk by looking at
+[the status image at the top of this README](https://github.com/jpmec/shepherdpy#shepherdpy).
 
 
 Notes
