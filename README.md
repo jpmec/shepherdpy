@@ -1,11 +1,21 @@
 shepherdpy
 ==========
 
+Status
+------
 [![Build Status](https://travis-ci.org/jpmec/shepherdpy.png)](https://travis-ci.org/jpmec/shepherdpy)
 
+Important: This library is currently in pre-release stage, so it might change and break (often).
+Feel free to use shepherdpy, but please understand the risks when you pull changes from the repo.
+I will release version 0.0.1 as soon as it is stable.
+
+
+Description
+-----------
 A companion library for mincemeatpy that will manage MapReduce clients.
 
 You can get mincemeatpy from [michaelfairley/mincemeatpy](https://github.com/michaelfairley/mincemeatpy)
+
 
 Why?
 ----
@@ -140,7 +150,7 @@ please add a unit test, and make sure it passes before submitting the pull reque
 
 shepherd.py uses [Travis CI](https://travis-ci.org/) for continuous integration,
 so you can see the latest status of the trunk by looking at
-[the status image at the top of this README](https://github.com/jpmec/shepherdpy#shepherdpy).
+[the status image at the top of this README](https://github.com/jpmec/shepherdpy#status).
 
 
 Notes
