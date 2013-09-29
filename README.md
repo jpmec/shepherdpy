@@ -30,6 +30,12 @@ I wanted to give more flexibility to those using mincemeatpy for MapReduce by:
 * making it easy to control a pool of client processes on the same machine, or a different machine.
 
 
+Installation?
+-------------
+You only need to download [mincemeat.py](raw.github.com/michaelfairley/mincemeatpy/master/mincemeat.py) and 
+[shepherd.py](raw.github.com/jpmec/shepherdpy/master/shepherd.py) to use the library.
+
+
 First Example
 -------------
 
