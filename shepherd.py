@@ -110,6 +110,8 @@ def run_client(options = {}):
 				break
 
 
+
+
 def options_parser():
 	parser = optparse.OptionParser(usage='%prog [options]', version='%%prog %s'%VERSION)
 	parser.add_option('-p', '--password', dest='password', default=DEFAULT_PASSWORD, help='password')
@@ -127,15 +129,17 @@ def options_parser():
 	return parser
 
 
+
+
 def run_clients(options=None):
 
 	parser = options_parser()
 	(default_options, args) = parser.parse_args([])
 
-	if (options is None):
-		options = default_options
-	else:
-		options = default_options.update(options)
+	if (options is not None):
+		default_options.__dict__.update(options.__dict__)
+
+	options = default_options
 
 	number_of_clients = int(options.number_of_clients)
 
