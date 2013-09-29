@@ -4,6 +4,7 @@ python:
   - "2.7"
 
 install:
+  # Needed for travis issue #155
   - sudo rm -rf /dev/shm && sudo ln -s /run/shm /dev/shm
 
 script: ./test_shepherd.sh
