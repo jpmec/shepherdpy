@@ -112,7 +112,7 @@ def run_client(options = {}):
 
 
 
-def options_parser():
+def client_options_parser():
 	parser = optparse.OptionParser(usage='%prog [options]', version='%%prog %s'%VERSION)
 	parser.add_option('-p', '--password', dest='password', default=DEFAULT_PASSWORD, help='password')
 	parser.add_option('-H', '--hostname', dest='hostname', default=DEFAULT_HOSTNAME, help='hostname')
@@ -133,11 +133,14 @@ def options_parser():
 
 def run_clients(options=None):
 
-	parser = options_parser()
+	parser = client_options_parser()
 	(default_options, args) = parser.parse_args([])
 
 	if (options is not None):
-		default_options.__dict__.update(options.__dict__)
+		try:
+			default_options.__dict__.update(options.__dict__)
+		except:
+			default_options.__dict__.update(options)
 
 	options = default_options
 
@@ -169,19 +172,46 @@ def run_clients(options=None):
 
 
 
-def run_server(datasource, mapfn, reducefn):
+def server_options_parser():
+	parser = optparse.OptionParser(usage='%prog [options]', version='%%prog %s'%VERSION)
+	parser.add_option('-p', '--password', dest='password', default=DEFAULT_PASSWORD, help='password')
+	parser.add_option('-P', '--port', dest='port', type='int', default=DEFAULT_PORT, help='port')
+	parser.add_option('-v', '--verbose', dest='verbose', action='store_true')
+	parser.add_option('-V', '--loud', dest='loud', action='store_true')
+	parser.add_option('-q', '--quiet', dest='quiet', action='store_true')
+
+	return parser
+
+
+
+
+def run_server(options):
+
+	parser = client_options_parser()
+	(default_options, args) = parser.parse_args([])
+
+	if (options is not None):
+		try:
+			default_options.__dict__.update(options.__dict__)
+		except:
+			default_options.__dict__.update(options)
+
+	options = default_options
+
+	logging.debug(options)
+
 	s = mincemeat.Server()
-	s.datasource = datasource
-	s.mapfn = mapfn
-	s.reducefn = reducefn
-	return s.run_server(password='')
+	s.datasource = options.datasource
+	s.mapfn = options.mapfn
+	s.reducefn = options.reducefn
+	return s.run_server(password=options.password)
 
 
 
 
 if __name__ == '__main__':
 
-	parser = options_parser()
+	parser = client_options_parser()
 	(options, args) = parser.parse_args()
 
 	if options.verbose:

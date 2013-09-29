@@ -6,7 +6,12 @@ from multiprocessing import Pool
 
 
 def run_example():
-  return shepherd.run_server(example.datasource, example.mapfn, example.reducefn)
+  options = {
+    'datasource':example.datasource,
+    'mapfn':example.mapfn,
+    'reducefn':example.reducefn
+  }
+  return shepherd.run_server(options)
 
 
 

@@ -6,7 +6,7 @@ data = ["Humpty Dumpty sat on a wall",
         "All the King's horses and all the King's men",
         "Couldn't put Humpty together again",
         ]
-# The data source can be any dictionary-like object
+
 datasource = dict(enumerate(data))
 
 def mapfn(k, v):
@@ -19,5 +19,12 @@ def reducefn(k, vs):
 
 
 if __name__ == '__main__':
-    results = shepherd.run_server(datasource, mapfn, reducefn)
+
+    options = {
+        'datasource': datasource,
+        'mapfn': mapfn,
+        'reducefn': reducefn
+    }
+
+    results = shepherd.run_server(options)
     print results
