@@ -1,6 +1,8 @@
 shepherdpy
 ==========
 
+[![Build Status](https://travis-ci.org/jpmec/shepherdpy.png)](https://travis-ci.org/jpmec/shepherdpy)
+
 A companion library for mincemeatpy that will manage MapReduce clients.
 
 You can get mincemeatpy here:
