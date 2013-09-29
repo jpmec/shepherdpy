@@ -6,6 +6,15 @@ from multiprocessing import Pool
 
 
 
+def run_default_map_reduce():
+	options = {
+		'datasource':{0:'Hello World'}
+	}
+	return shepherd.run_server(options)
+
+
+
+
 def run_example():
 	options = {
 		'datasource':example.datasource,
@@ -21,6 +30,19 @@ class TestShepherd(unittest.TestCase):
 
 	def setUp(self):
 		pass
+
+
+	def test_default_map_reduce(self):
+		
+		expected = {0:'Hello World'}
+
+		pool = Pool(processes=1)
+		process = pool.apply_async(run_default_map_reduce)
+		shepherd.run_clients()
+		result = process.get()
+
+		self.assertEqual(expected, result)
+				
 
 	def test_example(self):
 

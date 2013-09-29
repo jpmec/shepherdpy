@@ -90,6 +90,25 @@ class Client(mincemeat.Client):
 
 
 
+class Server(mincemeat.Server):
+
+	def __init__(self):
+		mincemeat.Server.__init__(self)
+		self.mapfn = self.default_mapfn
+		self.reducefn = self.default_reducefn
+
+	def default_mapfn(k, v):
+		yield k, v
+
+	def default_reducefn(k, vs):
+		if (len(vs) == 1):
+			return vs[0]
+		else:
+			return vs
+
+
+
+
 def run_client(options = {}):
 
 	while True:
@@ -200,10 +219,15 @@ def run_server(options):
 
 	logging.debug(options)
 
-	s = mincemeat.Server()
+	s = Server()
 	s.datasource = options.datasource
-	s.mapfn = options.mapfn
-	s.reducefn = options.reducefn
+	
+	if ('mapfn' in options.__dict__):
+		s.mapfn = options.mapfn
+
+	if ('reducefn' in options.__dict__):
+		s.reducefn = options.reducefn
+	
 	return s.run_server(password=options.password)
 
 
