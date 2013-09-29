@@ -110,7 +110,7 @@ python example.py
 
 next start 2 clients
 ```bash
-python shepherd.py -s 1 -n 2
+python shepherd.py -n 2
 ```
 
 Note that for very short tasks, such as example.py, both processes may not be used.
