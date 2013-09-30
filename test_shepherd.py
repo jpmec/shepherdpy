@@ -86,5 +86,34 @@ class TestShepherd(unittest.TestCase):
 
 
 
+	def test_CustomServer(self):
+		data = ['one fish', 'two fish', 'red fish', 'blue fish']
+		expected = {0: 'one fish', 1: 'two fish', 2: 'red fish', 3: 'blue fish'}
+
+		result = shepherd.run(
+			datasource = data,
+			server = shepherd.Server,
+		)
+
+		self.assertEqual(expected, result)
+
+
+
+
+	def test_WordCountServer(self):
+		data = ['one fish', 'two fish', 'red fish', 'blue fish']
+
+		expected = {'one':1, 'two':1, 'red':1, 'blue':1, 'fish':4}
+
+		result = shepherd.run(
+			datasource = data,
+			server = shepherd.WordCountServer,
+		)
+
+		self.assertEqual(expected, result)
+
+
+
+
 if __name__ == '__main__':
 	unittest.main()

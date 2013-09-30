@@ -93,19 +93,11 @@ class Client(mincemeat.Client):
 
 class Server(mincemeat.Server):
 
-	def __init__(self):
+	def __init__(self, datasource=None):
 		mincemeat.Server.__init__(self)
-		self.mapfn = self.default_mapfn
-		self.reducefn = self.default_reducefn
-
-	def default_mapfn(k, v):
-		yield k, v
-
-	def default_reducefn(k, vs):
-		if (len(vs) == 1):
-			return vs[0]
-		else:
-			return vs
+		self.datasource = datasource
+		self.mapfn = map_default
+		self.reducefn = reduce_default
 
 
 
@@ -220,20 +212,26 @@ def run_server(options):
 
 	logging.debug(options)
 
-	s = Server()
-
+	datasource = None
 	if (isinstance(options.datasource,collections.Mapping)):
-		s.datasource = options.datasource
+		datasource = options.datasource
 	else:
-		s.datasource = dict(enumerate(options.datasource))
+		datasource = dict(enumerate(options.datasource))
+
+	server = None
+	if ('server' in options.__dict__):
+		server = options.server(datasource)
+	else:
+		server = Server(datasource)
+
 
 	if ('mapfn' in options.__dict__):
-		s.mapfn = options.mapfn
+		server.mapfn = options.mapfn
 
 	if ('reducefn' in options.__dict__):
-		s.reducefn = options.reducefn
+		server.reducefn = options.reducefn
 
-	return s.run_server(password=options.password)
+	return server.run_server(password=options.password)
 
 
 
@@ -254,6 +252,27 @@ def map_word_count(k, v):
 
 def reduce_word_count(k, vs):
     return sum(vs)
+
+
+def map_default(k, v):
+	yield k, v
+
+
+def reduce_default(k, vs):
+	if (len(vs) == 1):
+		return vs[0]
+	else:
+		return vs
+
+
+
+
+class WordCountServer(Server):
+
+	def __init__(self, datasource=None):
+		Server.__init__(self, datasource)
+		self.mapfn = map_word_count
+		self.reducefn = reduce_word_count
 
 
 
