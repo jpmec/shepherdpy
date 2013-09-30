@@ -5,9 +5,9 @@ Status
 ------
 [![Build Status](https://travis-ci.org/jpmec/shepherdpy.png)](https://travis-ci.org/jpmec/shepherdpy)
 
-Important: This library is currently in pre-release stage, so it might change and break (often).
+Important: This library is currently in its infancy, so it might change and break (often).
 Feel free to use shepherdpy, but please understand the risks when you pull changes from the repo.
-I will release version 0.0.1 as soon as it is stable.
+I will release version 0.0.2 as soon as it is stable.
 
 
 Description
@@ -32,7 +32,7 @@ I wanted to give more flexibility to those using mincemeatpy for MapReduce by:
 
 Installation?
 -------------
-You only need to download [mincemeat.py](raw.github.com/michaelfairley/mincemeatpy/master/mincemeat.py) and 
+You only need to download [mincemeat.py](raw.github.com/michaelfairley/mincemeatpy/master/mincemeat.py) and
 [shepherd.py](raw.github.com/jpmec/shepherdpy/master/shepherd.py) to use the library.
 
 
@@ -157,6 +157,13 @@ please add a unit test, and make sure it passes before submitting the pull reque
 shepherd.py uses [Travis CI](https://travis-ci.org/) for continuous integration,
 so you can see the latest status of the trunk by looking at
 [the status image at the top of this README](https://github.com/jpmec/shepherdpy#status).
+
+
+Contributing
+------------
+When contributing, please branch from the develop branch, implement your feature,
+and create a pull request.  Any pull requests to the master branch will be closed and ignored.
+(I might send you a friendly reminder about the contributing guidelines :-) ).
 
 
 Notes
