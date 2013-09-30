@@ -33,7 +33,7 @@ import time
 from multiprocessing import Pool, Process
 
 
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 
 DEFAULT_HOSTNAME = 'localhost'
 DEFAULT_PASSWORD = ''
