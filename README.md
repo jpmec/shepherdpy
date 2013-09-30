@@ -170,5 +170,4 @@ from the [repo](https://github.com/michaelfairley/mincemeatpy).
 License
 -------
 
-shepherdpy is free software, licensed under the [MIT license](https://github.com/jpmec/shepherdpy/LICENSE).
-
+shepherdpy is free software, licensed under the [MIT license](https://github.com/jpmec/shepherdpy/blob/master/LICENSE).
