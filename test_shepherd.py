@@ -54,5 +54,37 @@ class TestShepherd(unittest.TestCase):
 
 
 
+	def test_word_counting_1(self):
+		data = ['one fish two fish red fish blue fish']
+
+		expected = {'one':1, 'two':1, 'red':1, 'blue':1, 'fish':4}
+
+		result = shepherd.run(
+			datasource = data,
+			mapfn = shepherd.map_word_count,
+			reducefn = shepherd.reduce_word_count,
+		)
+
+		self.assertEqual(expected, result)
+
+
+
+
+	def test_word_counting_2(self):
+		data = ['one fish', 'two fish', 'red fish', 'blue fish']
+
+		expected = {'one':1, 'two':1, 'red':1, 'blue':1, 'fish':4}
+
+		result = shepherd.run(
+			datasource = data,
+			mapfn = shepherd.map_word_count,
+			reducefn = shepherd.reduce_word_count,
+		)
+
+		self.assertEqual(expected, result)
+
+
+
+
 if __name__ == '__main__':
 	unittest.main()

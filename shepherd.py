@@ -247,6 +247,17 @@ def run(**kwargs):
 
 
 
+def map_word_count(k, v):
+    for w in v.split():
+        yield w, 1
+
+
+def reduce_word_count(k, vs):
+    return sum(vs)
+
+
+
+
 if __name__ == '__main__':
 
 	parser = client_options_parser()
