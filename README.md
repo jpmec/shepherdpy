@@ -165,3 +165,10 @@ Notes
 mincemeat.py 0.1.3 is included in this repo.  It is for testing and demo
 purposes only.  It is recommended you use the official mincemeat.py version
 from the [repo](https://github.com/michaelfairley/mincemeatpy).
+
+
+License
+-------
+
+shepherdpy is free software, licensed under the [MIT license](https://github.com/jpmec/shepherdpy/LICENSE).
+
