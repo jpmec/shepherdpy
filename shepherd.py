@@ -23,6 +23,7 @@
 # THE SOFTWARE.
 ################################################################################
 
+import collections
 import logging
 import mincemeat
 import optparse
@@ -220,7 +221,11 @@ def run_server(options):
 	logging.debug(options)
 
 	s = Server()
-	s.datasource = options.datasource
+
+	if (isinstance(options.datasource,collections.Mapping)):
+		s.datasource = options.datasource
+	else:
+		s.datasource = dict(enumerate(options.datasource))
 
 	if ('mapfn' in options.__dict__):
 		s.mapfn = options.mapfn
