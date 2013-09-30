@@ -12,6 +12,10 @@ class TestShepherd(unittest.TestCase):
 		pass
 
 
+	def test_run_clients(self):
+		shepherd.run_clients({})
+
+
 	def test_default_map_reduce(self):
 
 		expected = {0:'Hello World'}
@@ -61,8 +65,8 @@ class TestShepherd(unittest.TestCase):
 
 		result = shepherd.run(
 			datasource = data,
-			mapfn = shepherd.map_word_count,
-			reducefn = shepherd.reduce_word_count,
+			mapfn = shepherd.map_count,
+			reducefn = shepherd.reduce_count,
 		)
 
 		self.assertEqual(expected, result)
@@ -77,8 +81,8 @@ class TestShepherd(unittest.TestCase):
 
 		result = shepherd.run(
 			datasource = data,
-			mapfn = shepherd.map_word_count,
-			reducefn = shepherd.reduce_word_count,
+			mapfn = shepherd.map_count,
+			reducefn = shepherd.reduce_count,
 		)
 
 		self.assertEqual(expected, result)

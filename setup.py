@@ -1,7 +1,7 @@
 from distutils.core import setup
 setup(
-	name='shepherd',
-	version='0.0.1',
+	name='shepherdpy',
+	version='0.0.2',
 	author='Joshua Petitt',
 	py_modules=['shepherd'],
 	scripts=['shepherd.py'],
