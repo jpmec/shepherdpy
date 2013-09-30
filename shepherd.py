@@ -221,14 +221,23 @@ def run_server(options):
 
 	s = Server()
 	s.datasource = options.datasource
-	
+
 	if ('mapfn' in options.__dict__):
 		s.mapfn = options.mapfn
 
 	if ('reducefn' in options.__dict__):
 		s.reducefn = options.reducefn
-	
+
 	return s.run_server(password=options.password)
+
+
+
+
+def run(**kwargs):
+	server_pool = Pool(processes=1)
+	server_process = server_pool.apply_async(run_server, [kwargs])
+	run_clients()
+	return server_process.get()
 
 
 
